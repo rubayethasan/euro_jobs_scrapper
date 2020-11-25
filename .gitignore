@@ -2,4 +2,6 @@ euro_jobs/__pycache__/
 euro_jobs/__pycache__/*
 euro_jobs/spiders/__pycache__/
 euro_jobs/spiders/__pycache__/*
-euro_jobs/.DS_Store
+#euro_jobs/.DS_Store
+#euro_jobs/spiders/.DS_Store
+
