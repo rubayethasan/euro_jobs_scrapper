@@ -10,62 +10,42 @@ import pandas as pd
 class EurojobsSpider(scrapy.Spider):
     name = 'euroJobsGetJobURLs'
     allowed_domains = ['eurojobs.com']
-    noOfJobs = 0
-    noOfPages = 0   
                 
     def start_requests(self):
         
-        countryJob = pd.read_csv("country-wise-job-posting.csv")
+        countryJob = pd.read_csv("country-wise-job-posting(jkb).csv",sep=';')
         
+        #iterrating over already saved jkb country urls and job count
         for index,row in countryJob.iterrows():
             url = row['url']
             job_count = row['job_count']
-            print(url,job_count)
             
+            #Calculating total page number depending on total job posting cout. 10 jobs in one page.
             remPage = 0
             if job_count%10 > 0: remPage= 1
-            pageCount = round(job_count/10)+ remPage
-            print('pageCount',pageCount)
+            totalPageCount = round(job_count/10)+ remPage
             
+            print('totalJobCount: ',job_count,' totalPageCount: ',totalPageCount,' mainCountryUrl: ',url)
+            
+            #iterrating over page numbers for generating listing urls for scarpping
             i = 1
-            while i <= pageCount:
-                url = url+'?searchId=1606174454.9407&action=search&page='+str(i)+'&view=list'
+            while i <= totalPageCount:
+                print('currentPageNumber: ',i)
+                urlForScrp = url+'?searchId=1606174454.9407&action=search&page='+str(i)+'&view=list'
                 i = i + 1
-                yield Request(url, self.parse)
+                yield Request(urlForScrp, self.parse)
         
         
             
     def parse(self, response):
         sel = Selector(response)
-        # for href in sel.xpath("//div[@class='section']/ol[@class='jobs']/li[@class='job']/dl/dd[@class='title']/strong/a").extract():
-        #     print("URLs are: " + href)
         f = open("urls.txt", "a")
-        print('here i am')
-        for href in sel.xpath("//div[@class='listing-title']/a/@href").extract():
+        
+        #extarct all href for individual job posting
+        for href in sel.xpath("//li[@class='viewDetails']/a/@href").extract():
             print('href',href)
-        #for href in sel.xpath("//dl/dd[@class='title']/strong/a/@href").extract():
             f.write(href+"\n")
         f.close()
-         #   print("URLs are: "+href)
-        # for href in response.css('a::attr(href)'):
-        #     url = response.urljoin(href.extract())
-        #     print("URLs are: "+ url)
-            #yield scrapy.Request(url, callback=self.print_url)
-
+      
     def print_url(self, response):
         print("URLS are: "+response.url)
-
-    # rules = (
-    #     Rule(LinkExtractor(allow=(), restrict_css=('.page-numbers',)),
-    #          callback="parse_item",
-    #          follow=True),)
-
-    # def parse_dir_contents(self, response):
-    #     for sel in response.xpath('//ul/li'):
-    #         item = DmozItem()
-    #         item['title'] = sel.xpath('a/text()').extract()
-    #         item['link'] = sel.xpath('a/@href').extract()
-    #         item['desc'] = sel.xpath('text()').extract()
-    #         yield item
-    # def parse_item(self, response):
-    #     print('Processing..' + response.url)
