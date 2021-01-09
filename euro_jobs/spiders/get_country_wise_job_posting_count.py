@@ -31,7 +31,7 @@ class EuroJobsCountryWiseJobPostingCount(scrapy.Spider):
             data.append([a_ref,a_job_count])
             
         data = pd.DataFrame(data, columns = ['url','job_count'])
-        data.to_csv(r'country-wise-job-posting.csv', index = False)
+        data.to_csv(r'country-wise-job-posting-test.csv', index = False)
 
 
     def print_url(self, response):

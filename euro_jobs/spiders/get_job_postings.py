@@ -12,7 +12,7 @@ class EurojobspostingdetailsSpider(scrapy.Spider):
 
     # scrape each url from urls.txt
     def start_requests(self):
-        with open('urls.txt', 'r') as urls:
+        with open('urls-selected.txt', 'r') as urls:
             try:
                 for index, url in enumerate(urls, 1):
                     yield Request(url, self.parse)
@@ -52,17 +52,25 @@ class EurojobspostingdetailsSpider(scrapy.Spider):
         try:
             category = sel.xpath("//*[contains(text(),'Job Category:')]/ancestor::div/div[@class='displayField']/text()").extract()[0]
             category = category.strip()
-            print('category here',category)
         except:
             category = ""
         try:
             jobType = sel.xpath("//*[contains(text(),'Job Category:')]/ancestor::div/div[@class='displayField']/text()").extract()[0]
             jobType = jobType.strip()
-            print('jobType here',jobType)
         except:
             jobType = ""
         try:
-            htmlBlob = sel.xpath("//fieldset[@id='col-wide']").extract()[0]
+            orig_source = sel.xpath("//*[contains(text(),'Original Source')]").extract()[0]
+        except:
+            orig_source = ""
+        try:
+            htmlBlob = sel.xpath("//div[@class='listingInfo']/h2").extract()[0]
+            htmlBlob += sel.xpath("//fieldset[@id='col-narrow-left']").extract()[0]
+            htmlBlob += sel.xpath("//fieldset[@id='col-narrow-right']").extract()[0]
+            htmlBlob += sel.xpath("//fieldset[@id='col-wide']").extract()[0]
+            htmlBlob += sel.xpath("//div[@class='userInfo']").extract()[0]
+            if orig_source: 
+                htmlBlob += htmlBlob + "<a class='Original-Source'>Original Source</a>"
         except:
             htmlBlob = ""
 
