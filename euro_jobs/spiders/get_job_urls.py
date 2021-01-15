@@ -5,6 +5,7 @@ from scrapy.linkextractors import LinkExtractor
 from scrapy.http.request import Request
 from scrapy.selector import Selector
 import pandas as pd
+import math
 
 
 class EurojobsSpider(scrapy.Spider):
@@ -21,16 +22,21 @@ class EurojobsSpider(scrapy.Spider):
             job_count = row['job_count']
             
             #Calculating total page number depending on total job posting cout. 10 jobs in one page.
-            remPage = 0
-            if job_count%10 > 0: remPage= 1
-            totalPageCount = round(job_count/10)+ remPage
+            #remPage = 0
+            #if job_count%10 > 0: remPage= 1
+            #totalPageCount = round(job_count/10)+ remPage
+            #totalPageCount = math.floor(job_count/10)+ remPage
+            totalPageCount = math.ceil(job_count/10)
             
             print('totalJobCount: ',job_count,' totalPageCount: ',totalPageCount,' mainCountryUrl: ',url)
             
             #iterrating over page numbers for generating listing urls for scarpping
             i = 1
+            print('totalPageCount:',totalPageCount)
             while i <= totalPageCount:
-                print('currentPageNumber: ',i)
+                #print('i:',i)
+                #print('currentPageNumber: ',i)
+                ?searchId=1610734507.9516&action=search&page=2&view=list
                 urlForScrp = url+'?searchId=1606174454.9407&action=search&page='+str(i)+'&view=list'
                 i = i + 1
                 yield Request(urlForScrp, self.parse)
@@ -39,11 +45,11 @@ class EurojobsSpider(scrapy.Spider):
             
     def parse(self, response):
         sel = Selector(response)
-        f = open("urls-15jan.txt", "a")
+        f = open("urls-15jan", "a")
         
         #extarct all href for individual job posting
         for href in sel.xpath("//li[@class='viewDetails']/a/@href").extract():
-            print('href',href)
+            #print('href',href)
             f.write(href+"\n")
         f.close()
       
