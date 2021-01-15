@@ -18,10 +18,12 @@ NEWSPIDER_MODULE = 'euro_jobs.spiders'
 DB_SERVER = 'pymysql'                # For detail, please see twisted doc
 
 DB_CONNECT = {
-    'db': 'diskow',                  # Your db
+    'db': 'eurojobs_scrap',                  # Your db
     'user': 'root',              #
-    'passwd': 'root',    #
-    'host': 'localhost',             # Your Server
+    'passwd': 'l3hasanhumaun',    #
+    #'host': 'localhost',             # Your Server
+    'host': 'rashid@130.75.87.183',             # Your Server
+    #'port': 3306,
     'port': 8889,
     'charset': 'utf8',
     'use_unicode': True,

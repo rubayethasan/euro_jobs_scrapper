@@ -6,13 +6,13 @@ from ..items import EuroJobsItem
 import datetime
 
 
-class EurojobspostingdetailsSpider(scrapy.Spider):
-    name = 'euroJobsGetJobPostingDetails'
+class EurojobspostingdetailsSpiderOrig(scrapy.Spider):
+    name = 'euroJobsGetJobPostingDetailsOrig'
     allowed_domains = ['eurojobs.com']
 
     # scrape each url from urls.txt
     def start_requests(self):
-        with open('urls-15jan.txt', 'r') as urls:
+        with open('urls-selected.txt', 'r') as urls:
             try:
                 for index, url in enumerate(urls, 1):
                     yield Request(url, self.parse)
