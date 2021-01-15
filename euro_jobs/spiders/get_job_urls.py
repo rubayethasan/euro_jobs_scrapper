@@ -36,7 +36,6 @@ class EurojobsSpider(scrapy.Spider):
             while i <= totalPageCount:
                 #print('i:',i)
                 #print('currentPageNumber: ',i)
-                ?searchId=1610734507.9516&action=search&page=2&view=list
                 urlForScrp = url+'?searchId=1606174454.9407&action=search&page='+str(i)+'&view=list'
                 i = i + 1
                 yield Request(urlForScrp, self.parse)
