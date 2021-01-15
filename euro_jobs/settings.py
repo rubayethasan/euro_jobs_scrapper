@@ -23,8 +23,8 @@ DB_CONNECT = {
     'passwd': 'l3hasanhumaun',    #
     #'host': 'localhost',             # Your Server
     'host': 'rashid@130.75.87.183',             # Your Server
-    #'port': 3306,
-    'port': 8889,
+    'port': 3306,
+    #'port': 8889,
     'charset': 'utf8',
     'use_unicode': True,
 }
