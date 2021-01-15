@@ -19,10 +19,11 @@ DB_SERVER = 'pymysql'                # For detail, please see twisted doc
 
 DB_CONNECT = {
     'db': 'eurojobs_scrap',                  # Your db
-    'user': 'root',              #
+    'user': 'root',
+    #'user': 'root@localhost',
     'passwd': 'l3hasanhumaun',    #
     #'host': 'localhost',             # Your Server
-    'host': 'rashid@130.75.87.183',             # Your Server
+    'host': '130.75.87.183',             # Your Server
     'port': 3306,
     #'port': 8889,
     'charset': 'utf8',
