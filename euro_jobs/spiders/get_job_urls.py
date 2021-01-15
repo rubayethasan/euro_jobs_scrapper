@@ -13,7 +13,7 @@ class EurojobsSpider(scrapy.Spider):
                 
     def start_requests(self):
         
-        countryJob = pd.read_csv("country-wise-job-posting(selected).csv",sep=';')
+        countryJob = pd.read_csv("country-wise-job-posting-test.csv",sep=';')
         
         #iterrating over already saved jkb country urls and job count
         for index,row in countryJob.iterrows():
@@ -39,7 +39,7 @@ class EurojobsSpider(scrapy.Spider):
             
     def parse(self, response):
         sel = Selector(response)
-        f = open("urls-selected.txt", "a")
+        f = open("urls-15jan.txt", "a")
         
         #extarct all href for individual job posting
         for href in sel.xpath("//li[@class='viewDetails']/a/@href").extract():
