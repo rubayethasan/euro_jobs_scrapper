@@ -46,7 +46,7 @@ class EurojobsSpider(scrapy.Spider):
             
     def parse(self, response):
         sel = Selector(response)
-        f = open("urls-15jan", "a")
+        f = open("urls.txt", "a")
         
         #extarct all href for individual job posting
         for href in sel.xpath("//li[@class='viewDetails']/a/@href").extract():
