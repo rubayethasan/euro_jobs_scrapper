@@ -12,7 +12,7 @@ class EurojobspostingdetailsSpider(scrapy.Spider):
 
     # scrape each url from urls.txt
     def start_requests(self):
-        with open('urls-15jan.txt', 'r') as urls:
+        with open('urls.txt', 'r') as urls:
             try:
                 for index, url in enumerate(urls, 1):
                     yield Request(url, self.parse)

@@ -21,12 +21,12 @@ DB_CONNECT = {
     'db': 'eurojobs_scrap',                  # Your db
     'user': 'root',
     #'user': 'root@localhost',
-    'passwd': 'l3hasanhumaun',    #
-    #'passwd':'root',
+    #'passwd': 'l3hasanhumaun',    #
+    'passwd':'root',
     'host': 'localhost',             # Your Server
     #'host': '130.75.87.183',             # Your Server
-    'port': 3306,
-    #'port': 8889,
+    #'port': 3306,
+    'port': 8889,
     'charset': 'utf8',
     'use_unicode': True,
 }

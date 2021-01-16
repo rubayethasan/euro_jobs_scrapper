@@ -14,7 +14,7 @@ class EurojobsSpider(scrapy.Spider):
                 
     def start_requests(self):
         
-        countryJob = pd.read_csv("country-wise-job-posting-test.csv",sep=';')
+        countryJob = pd.read_csv("country-wise-job-posting.csv",sep=';')
         
         #iterrating over already saved jkb country urls and job count
         for index,row in countryJob.iterrows():
