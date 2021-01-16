@@ -22,6 +22,7 @@ DB_CONNECT = {
     'user': 'root',
     #'user': 'root@localhost',
     'passwd': 'l3hasanhumaun',    #
+    #'passwd':'root',
     #'host': 'localhost',             # Your Server
     'host': '130.75.87.183',             # Your Server
     'port': 3306,
