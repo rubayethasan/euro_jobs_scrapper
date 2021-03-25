@@ -20,4 +20,5 @@ class EuroJobsItem(scrapy.Item):
     description = scrapy.Field()
     html_blob = scrapy.Field()
     expired = scrapy.Field()
+    salary = scrapy.Field()
     pass

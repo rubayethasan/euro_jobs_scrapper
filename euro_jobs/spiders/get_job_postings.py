@@ -16,6 +16,7 @@ class EurojobspostingdetailsSpider(scrapy.Spider):
             try:
                 for index, url in enumerate(urls, 1):
                     yield Request(url, self.parse)
+                    #break
             except:
                 print("CONNECTION WAS NOT SET")
 
@@ -39,6 +40,11 @@ class EurojobspostingdetailsSpider(scrapy.Spider):
             date = date.strip()
         except:
             date = ""
+        try:
+            salary = sel.xpath("//*[contains(text(),'Salary:')]/ancestor::div/div[@class='displayField']/text()").extract()[0]
+            salary = salary.strip()
+        except:
+            salary = ""
         try:
             location = sel.xpath("//*[contains(text(),'Location:')]/ancestor::div/div[@class='displayField']/text()").extract()[0]
             location = location.strip()
@@ -84,6 +90,8 @@ class EurojobspostingdetailsSpider(scrapy.Spider):
         item['description'] = description
         item['html_blob'] = htmlBlob
         item['expired'] = expired
+        item['salary'] = salary
+
 
         print('item',item)
         yield item

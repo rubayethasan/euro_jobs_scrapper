@@ -32,9 +32,9 @@ class EuroJobsPipeline(object):
 
     def check_select_stmt(self, conn, item):
         try:
-            result = conn.execute("INSERT INTO JobsEuropeDetails(`URL`, `title`, `date_posted`, `category`, `location`, `job_type`, `description`, `html_blob`, `expired`) "
-                                  "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
-                                  (item['url'], item['title'], item['date_posted'], item['category'], item['location'], item['job_type'], item['description'], item['html_blob'], item['expired']))
+            result = conn.execute("INSERT INTO JobsEuropeDetails(`URL`, `title`, `date_posted`, `category`, `location`, `job_type`, `description`, `html_blob`, `expired`, `salary`) "
+                                  "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                                  (item['url'], item['title'], item['date_posted'], item['category'], item['location'], item['job_type'], item['description'], item['html_blob'], item['expired'], item['salary']))
             if result:
                 print("inserted into db")
 
