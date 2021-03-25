@@ -11,6 +11,7 @@ import math
 class EurojobsSpider(scrapy.Spider):
     name = 'euroJobsGetJobURLs'
     allowed_domains = ['eurojobs.com']
+    maximumJobForEachCountry = 10000
                 
     def start_requests(self):
         
@@ -22,6 +23,8 @@ class EurojobsSpider(scrapy.Spider):
         for index,row in countryJob.iterrows():
             url = row['url']
             job_count = row['job_count']
+            if job_count > self.maximumJobForEachCountry:
+                job_count = 10000
             
             #Calculating total page number depending on total job posting cout. 10 jobs in one page.
             #remPage = 0

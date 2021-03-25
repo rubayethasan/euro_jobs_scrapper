@@ -12,6 +12,7 @@ import pandas as pd
 class EuroJobsCountryWiseJobPostingCount(scrapy.Spider):
     name = 'euroJobsCountryWiseJobPostingCount'
     allowed_domains = ['eurojobs.com']
+    allowedCountryUrls = list(pd.read_csv("allowed-country-urls.csv")['url'])
     
     def start_requests(self):
         url = 'https://www.eurojobs.com/browse-by-country/'
@@ -28,8 +29,10 @@ class EuroJobsCountryWiseJobPostingCount(scrapy.Spider):
             a_text = a_text.strip()
             a_job_count = int(re.findall(r'\d+', a_text)[0])
             a_ref = a.xpath('//a/@href')[0]
-            data.append([a_ref,a_job_count])
             
+            if a_ref in self.allowedCountryUrls:
+                data.append([a_ref,a_job_count])
+                
         data = pd.DataFrame(data, columns = ['url','job_count'])
         data.to_csv(r'country-wise-job-posting.csv', index = False)
 
