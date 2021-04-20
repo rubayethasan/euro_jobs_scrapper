@@ -9,8 +9,7 @@ import scrapy
 
 
 class EuroJobsItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
+    # define the fields for your item here:
     url = scrapy.Field()
     title = scrapy.Field()
     date_posted = scrapy.Field()

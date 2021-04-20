@@ -11,7 +11,7 @@ import math
 class EurojobsSpider(scrapy.Spider):
     name = 'euroJobsGetJobURLs'
     allowed_domains = ['eurojobs.com']
-    maximumJobForEachCountry = 10000
+    maximumJobForEachCountry = 10000 #maximum 10k jobs will be collected for each country
                 
     def start_requests(self):
         

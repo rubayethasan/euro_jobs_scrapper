@@ -15,9 +15,7 @@ class EurojobspostingdetailsSpider(scrapy.Spider):
         with open('urls.txt', 'r') as urls:
             try:
                 for index, url in enumerate(urls, 1):
-                    #url ='https://www.eurojobs.com/greece/job/19476295/spanish-team-leader-athens.html?searchId=1618874878.9103&page=1'
                     yield Request(url, self.parse)
-                    #break
             except:
                 print("CONNECTION WAS NOT SET")
 
@@ -70,13 +68,13 @@ class EurojobspostingdetailsSpider(scrapy.Spider):
             orig_source = sel.xpath("//*[contains(text(),'Original Source')]").extract()[0]
         except:
             orig_source = ""
-        try:
+        try: #saving total html document
             htmlBlob = sel.xpath("//div[@class='listingInfo']/h2").extract()[0]
             htmlBlob += sel.xpath("//fieldset[@id='col-narrow-left']").extract()[0]
             htmlBlob += sel.xpath("//fieldset[@id='col-narrow-right']").extract()[0]
             htmlBlob += sel.xpath("//fieldset[@id='col-wide']").extract()[0]
             htmlBlob += sel.xpath("//div[@class='userInfo']").extract()[0]
-            if orig_source: 
+            if orig_source: #if the html document contains a referance url then a token is set for further cleaning
                 htmlBlob += htmlBlob + "<a class='Original-Source'>Original Source</a>"
         except:
             htmlBlob = ""

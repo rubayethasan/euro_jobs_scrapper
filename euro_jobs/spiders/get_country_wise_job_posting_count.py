@@ -30,7 +30,7 @@ class EuroJobsCountryWiseJobPostingCount(scrapy.Spider):
             a_job_count = int(re.findall(r'\d+', a_text)[0])
             a_ref = a.xpath('//a/@href')[0]
             
-            if a_ref in self.allowedCountryUrls:
+            if a_ref in self.allowedCountryUrls: #Only allow the urls of european countries
                 data.append([a_ref,a_job_count])
                 
         data = pd.DataFrame(data, columns = ['url','job_count'])
