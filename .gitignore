@@ -7,6 +7,7 @@ euro_jobs/.DS_Store
 euro_jobs/spiders/.DS_Store
 ScrapeMain.ipynb
 Test.ipynb
-#country-wise-job-posting.csv
+country-wise-job-posting.csv
 scrapedata.db
-#urls.txt
+urls.txt
+.ipynb_checkpoints
