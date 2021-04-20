@@ -1,4 +1,4 @@
-# euro_jobs (https://www.eurojobs.com/)
+# euro_jobs_scraper
 
 ## Description 
 1. __urls.txt__: File containing urls. This file is generated/overwritten when you run scrapy
