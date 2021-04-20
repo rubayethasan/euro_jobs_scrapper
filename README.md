@@ -24,3 +24,8 @@
 4. To get the job posting details
 
 ```scrapy crawl euroJobsGetJobPostingDetails```
+
+## Run all process at once
+1. To run all the process above at once run the command below in the terminal
+```python ScrapeMain.py```
+

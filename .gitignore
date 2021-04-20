@@ -5,4 +5,8 @@ euro_jobs/spiders/__pycache__/*
 .DS_Store
 euro_jobs/.DS_Store
 euro_jobs/spiders/.DS_Store
-
+ScrapeMain.ipynb
+Test.ipynb
+#country-wise-job-posting.csv
+scrapedata.db
+#urls.txt

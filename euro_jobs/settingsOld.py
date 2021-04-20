@@ -10,25 +10,26 @@
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
 BOT_NAME = 'euro_jobs'
+
 SPIDER_MODULES = ['euro_jobs.spiders']
 NEWSPIDER_MODULE = 'euro_jobs.spiders'
 
 #DB_SERVER = 'MySQLdb'                # For detail, please see twisted doc
-#DB_SERVER = 'pymysql'                # For detail, please see twisted doc
+DB_SERVER = 'pymysql'                # For detail, please see twisted doc
 
-#DB_CONNECT = {
-    #'db': 'eurojobs_scrap',                  # Your db
-    #'user': 'root',
+DB_CONNECT = {
+    'db': 'eurojobs_scrap',                  # Your db
+    'user': 'root',
     #'user': 'root@localhost',
-    #'passwd': 'l3hasanhumaun',    #
+    'passwd': 'l3hasanhumaun',    #
     #'passwd':'root',
-    #'host': 'localhost',             # Your Server
+    'host': 'localhost',             # Your Server
     #'host': '130.75.87.183',             # Your Server
-    #'port': 3306,
+    'port': 3306,
     #'port': 8889,
-    #'charset': 'utf8',
-    #'use_unicode': True,
-#}
+    'charset': 'utf8',
+    'use_unicode': True,
+}
 
 ITEM_PIPELINES = {
     'euro_jobs.pipelines.EuroJobsPipeline': 300,

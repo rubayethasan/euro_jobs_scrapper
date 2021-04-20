@@ -15,6 +15,7 @@ class EurojobspostingdetailsSpider(scrapy.Spider):
         with open('urls.txt', 'r') as urls:
             try:
                 for index, url in enumerate(urls, 1):
+                    #url ='https://www.eurojobs.com/greece/job/19476295/spanish-team-leader-athens.html?searchId=1618874878.9103&page=1'
                     yield Request(url, self.parse)
                     #break
             except:
