@@ -40,8 +40,7 @@ class DeleteInactiveJobs:
             self.deleteOneInactive(row['url'],delete_from_tables)
 
 def delete_inactive_jobs():
-    DeleteInactiveJobs = DeleteInactiveJobs()
-    DeleteInactiveJobs.deleteAllIncative('jobdetails',['joburls','jobdetails'])
+    DeleteInactiveJobs().deleteAllIncative('jobdetails',['joburls','jobdetails'])
 
 if __name__ == '__main__':
     delete_inactive_jobs()

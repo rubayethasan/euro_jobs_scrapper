@@ -44,7 +44,7 @@ class EurojobsSpider(scrapy.Spider):
                 i = i + 1
                 yield Request(urlForScrp, self.parse)
                                 
-            break
+            #break
                 
                 
         
