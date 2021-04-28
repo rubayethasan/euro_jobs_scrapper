@@ -24,7 +24,12 @@ class EurojobspostingdetailsSpider(scrapy.Spider):
         try:
             self.cursor.execute('SELECT * FROM joburls')
             for row in self.cursor.fetchall():
-                yield Request(row['url'], self.parse)
+                url = row['url']
+                self.cursor.execute("select * from jobdetails where url=?", (url,)) #checking for duplicate entry
+                if not self.cursor.fetchone():
+                    yield Request(url, self.parse)
+                else:
+                    print('Already Exists',url)
         except:
             print("CONNECTION WAS NOT SET")
 
