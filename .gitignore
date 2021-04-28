@@ -11,3 +11,4 @@ country-wise-job-posting.csv
 scrapedata.db
 urls.txt
 .ipynb_checkpoints
+__pycache__/

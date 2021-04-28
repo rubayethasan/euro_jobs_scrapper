@@ -21,3 +21,9 @@ class EuroJobsItem(scrapy.Item):
     expired = scrapy.Field()
     salary = scrapy.Field()
     pass
+
+class UrlItem(scrapy.Item):
+    # define the fields for your item here:
+    url = scrapy.Field()
+    country = scrapy.Field()  
+    pass

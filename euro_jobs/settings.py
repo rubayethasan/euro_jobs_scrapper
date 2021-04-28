@@ -26,6 +26,7 @@ NEWSPIDER_MODULE = 'euro_jobs.spiders'
     #'use_unicode': True,
 #}
 
+DB_PATH = './scrapedata.db' #sqlite db
 ITEM_PIPELINES = {
     'euro_jobs.pipelines.EuroJobsPipeline': 300,
 }

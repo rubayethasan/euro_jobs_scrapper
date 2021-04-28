@@ -27,13 +27,16 @@ class EuroJobsCountryWiseJobPostingCount(scrapy.Spider):
             a = etree.HTML(anchor)
             a_text = a.xpath('//a/text()')[0]
             a_text = a_text.strip()
+            a_job_country = a_text.split('(')[0].strip()
             a_job_count = int(re.findall(r'\d+', a_text)[0])
+
             a_ref = a.xpath('//a/@href')[0]
             
             if a_ref in self.allowedCountryUrls: #Only allow the urls of european countries
-                data.append([a_ref,a_job_count])
+                data.append([a_job_country,a_ref,a_job_count])
                 
-        data = pd.DataFrame(data, columns = ['url','job_count'])
+            #break
+        data = pd.DataFrame(data, columns = ['country','url','job_count'])
         data.to_csv(r'country-wise-job-posting.csv', index = False)
 
 

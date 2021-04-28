@@ -4,20 +4,38 @@ from scrapy.http.request import Request
 from scrapy.selector import Selector
 from ..items import EuroJobsItem
 import datetime
+import sqlite3 as sqlite
+from scrapy.utils.project import get_project_settings
+settings = get_project_settings()
+import sys
 
 
 class EurojobspostingdetailsSpider(scrapy.Spider):
     name = 'euroJobsGetJobPostingDetails'
     allowed_domains = ['eurojobs.com']
+    
+    connection = sqlite.connect(settings.get('DB_PATH'))
+    connection.row_factory = sqlite.Row
+    cursor = connection.cursor()
 
     # scrape each url from urls.txt
     def start_requests(self):
+           
+        try:
+            self.cursor.execute('SELECT * FROM joburls')
+            for row in self.cursor.fetchall():
+                yield Request(row['url'], self.parse)
+        except:
+            print("CONNECTION WAS NOT SET")
+
+        '''
         with open('urls.txt', 'r') as urls:
             try:
                 for index, url in enumerate(urls, 1):
                     yield Request(url, self.parse)
             except:
                 print("CONNECTION WAS NOT SET")
+        '''
 
     # document parser
     def parse(self, response):
